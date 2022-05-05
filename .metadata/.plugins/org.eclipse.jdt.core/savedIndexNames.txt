@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\zarras\Documents\zarras-home\doc\courses\soft-eng\slides\junit-stuff\myy803-junit-mockito-tutorials\.metadata\.plugins\org.eclipse.jdt.core
+3940928801.index
+1731063414.index
