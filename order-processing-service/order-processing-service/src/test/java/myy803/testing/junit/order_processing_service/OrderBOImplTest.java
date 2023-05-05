@@ -19,6 +19,7 @@ import org.mockito.Mock;
 import myy803.testing.junit.order_processing_service.bo.BOException;
 import myy803.testing.junit.order_processing_service.bo.OrderBOImpl;
 import myy803.testing.junit.order_processing_service.dao.Order;
+import myy803.testing.junit.order_processing_service.dao.OrderDAO;
 import myy803.testing.junit.order_processing_service.dao.OrderDAOImpl;
 
 
@@ -28,15 +29,17 @@ public class OrderBOImplTest {
 	private static final int ORDER_ID = 123;
 	
 	@Mock
-	private OrderDAOImpl dao;
+	private OrderDAO dao;
+	
 	@InjectMocks
 	private OrderBOImpl bo;
 
 	@Test
-	public void placeOrder_Should_Return_True() throws SQLException, BOException {
-
+	public void placeOrderShouldReturnTrue() throws SQLException, BOException {
 		Order order = new Order();
+		
 		when(dao.create(any(Order.class))).thenReturn(new Integer(1));
+		
 		boolean result = bo.placeOrder(order);
 
 		Assertions.assertTrue(result);
@@ -45,9 +48,11 @@ public class OrderBOImplTest {
 	}
 
 	@Test
-	public void placeOrder_Should_Return_False() throws SQLException, BOException {
+	public void placeOrderShouldReturnFalse() throws SQLException, BOException {
 		Order order = new Order();
+		
 		when(dao.create(order)).thenReturn(new Integer(0));
+		
 		boolean result = bo.placeOrder(order);
 
 		Assertions.assertFalse(result);
@@ -56,11 +61,14 @@ public class OrderBOImplTest {
 	}
 
 	@Test
-	public void cancelOrder_Should_Return_True() throws SQLException, BOException {
+	public void cancelOrderShouldReturnTrue() throws SQLException, BOException {
 		Order order = new Order();
+		
 		when(dao.read(anyInt())).thenReturn(order);
 		when(dao.update(order)).thenReturn(1);
+		
 		boolean result = bo.cancelOrder(ORDER_ID);
+		
 		Assertions.assertTrue(result);
 
 		verify(dao).read(anyInt());
@@ -69,40 +77,49 @@ public class OrderBOImplTest {
 	}
 
 	@Test
-	public void cancelOrder_Should_Return_False() throws SQLException, BOException {
+	public void cancelOrderShouldReturnFalse() throws SQLException, BOException {
 		Order order = new Order();
+		
 		when(dao.read(ORDER_ID)).thenReturn(order);
 		when(dao.update(order)).thenReturn(0);
+		
 		boolean result = bo.cancelOrder(ORDER_ID);
-
-		Assertions.assertFalse(result);
 
 		verify(dao).read(ORDER_ID);
 		verify(dao).update(order);
+		
+		Assertions.assertFalse(result);
+
+		
 
 	}
 
-	public void cancelOrder_ShouldThrowABOExceptionOnRead() throws SQLException, BOException {
+	public void cancelOrderShouldThrowBOExceptionOnRead() throws SQLException, BOException {
 		
 		when(dao.read(anyInt())).thenThrow(SQLException.class);
 		
 		Assertions.assertThrows(BOException.class, () -> {bo.cancelOrder(ORDER_ID);});
 	}
 
-	public void cancelOrder_Should_Throw_A_BOExceptionOnUpdate() throws SQLException, BOException {
-		Order order = new Order();
-		when(dao.read(ORDER_ID)).thenReturn(order);
-		when(dao.update(order)).thenThrow(SQLException.class);
-		Assertions.assertThrows(BOException.class, () -> {bo.cancelOrder(ORDER_ID);});	}
-
 	@Test
-	public void deleteOrder_Should_Return_True() throws SQLException, BOException {
+	public void deleteOrderShouldReturnTrue() throws SQLException, BOException {
 
 		when(dao.delete(ORDER_ID)).thenReturn(1);
+		
 		boolean result = bo.deleteOrder(ORDER_ID);
+		
 		Assertions.assertTrue(result);
 		verify(dao).delete(ORDER_ID);
 
+	}
+	
+	@Test
+	public void placeOrderShouldThrowBOException() throws SQLException, BOException {
+		Order order = new Order();
+		
+		when(dao.create(order)).thenThrow(SQLException.class);
+		
+		Assertions.assertThrows(BOException.class, () -> {bo.placeOrder(order);});
 	}
 
 }

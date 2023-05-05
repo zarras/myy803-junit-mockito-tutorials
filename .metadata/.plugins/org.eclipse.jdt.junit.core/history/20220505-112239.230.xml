@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="myy803.testing.junit.sales" project="sales" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="myy803.testing.junit.sales.TestSaleWithMockito" time="0.703" displayname="TestSaleWithMockito" uniqueid="[engine:junit-jupiter]/[class:myy803.testing.junit.sales.TestSaleWithMockito]">
-    <testcase name="testThatScanCallsMockDisplayWithProductDescription" classname="myy803.testing.junit.sales.TestSaleWithMockito" time="0.703" displayname="testThatScanCallsMockDisplayWithProductDescription()" uniqueid="[engine:junit-jupiter]/[class:myy803.testing.junit.sales.TestSaleWithMockito]/[method:testThatScanCallsMockDisplayWithProductDescription()]"/>
-  </testsuite>
-  <testsuite name="myy803.testing.junit.sales.TestSaleWithFakeDisplay" time="0.0" displayname="TestSaleWithFakeDisplay" uniqueid="[engine:junit-jupiter]/[class:myy803.testing.junit.sales.TestSaleWithFakeDisplay]">
-    <testcase name="testThatScanShowsProductDescriptionInFakeDisplay" classname="myy803.testing.junit.sales.TestSaleWithFakeDisplay" time="0.0" displayname="testThatScanShowsProductDescriptionInFakeDisplay()" uniqueid="[engine:junit-jupiter]/[class:myy803.testing.junit.sales.TestSaleWithFakeDisplay]/[method:testThatScanShowsProductDescriptionInFakeDisplay()]"/>
-  </testsuite>
-</testrun>
