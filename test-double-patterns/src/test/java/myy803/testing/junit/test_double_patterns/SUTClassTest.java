@@ -1,13 +1,8 @@
 package myy803.testing.junit.test_double_patterns;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import myy803.testing.junit.test_double_patterns.DOCClass;
-import myy803.testing.junit.test_double_patterns.SUTClass;
 
 class SUTClassTest {
 	
